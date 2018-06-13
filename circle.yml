@@ -8,10 +8,11 @@ jobs:
           name: "Installing Linux and Checking Versions"
           command: |
             curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            dpkg -i google-chrome.deb || true
-            apt-get update
-            apt-get install -f
-            apt-get install --only-upgrade lsb-base
-            dpkg -i google-chrome.deb
+            apt-get install -y sudo
+            sudo dpkg -i google-chrome.deb || true
+            sudo apt-get update
+            sudo apt-get install -f
+            sudo apt-get install --only-upgrade lsb-base
+            sudo dpkg -i google-chrome.deb
             google-chrome --version
 
