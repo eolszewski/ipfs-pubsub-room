@@ -2,10 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      - image: circleci/node:6.10
+    environment:
+      - CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      - CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     steps:
       - run:
-          name: "Installing Linux and Checking Versions"
+          name: Installing Google Chrome and Checking Versions
           command: |
             curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
             sudo dpkg -i google-chrome.deb || true
@@ -14,11 +17,12 @@ jobs:
             sudo apt-get install --only-upgrade lsb-base
             sudo dpkg -i google-chrome.deb
             google-chrome --version
-      - run: npm test
+      - run:
+          name: Run unit tests
+          command: npm test
       - store_test_results:
           path: /tmp/circleci-test-results
       - store_artifacts:
           path: /tmp/circleci-artifacts
       - store_artifacts:
           path: /tmp/circleci-test-results
-
