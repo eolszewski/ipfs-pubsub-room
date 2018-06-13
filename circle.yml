@@ -11,6 +11,7 @@ jobs:
       - run:
           name: Installing Google Chrome and Checking Versions
           command: |
+            sudo apt-get install fonts-liberation libappindicator3-1
             curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
             sudo dpkg -i google-chrome.deb || true
             sudo apt-get update
