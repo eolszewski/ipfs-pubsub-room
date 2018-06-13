@@ -14,4 +14,11 @@ jobs:
             sudo apt-get install --only-upgrade lsb-base
             sudo dpkg -i google-chrome.deb
             google-chrome --version
+      - run: npm test
+      - store_test_results:
+          path: /tmp/circleci-test-results
+      - store_artifacts:
+          path: /tmp/circleci-artifacts
+      - store_artifacts:
+          path: /tmp/circleci-test-results
 
