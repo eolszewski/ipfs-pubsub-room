@@ -17,6 +17,9 @@ jobs:
             sudo apt-get install --only-upgrade lsb-base
             sudo dpkg -i google-chrome.deb
             google-chrome --version
+      - run: 
+          name: Install dependencies
+          command: npm install
       - run:
           name: Run unit tests
           command: npm test
